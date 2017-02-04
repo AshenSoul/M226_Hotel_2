@@ -26,6 +26,7 @@ public class Server extends GeneralConnection{
 			printer = new PrintWriter(clSocket.getOutputStream());
 			reader = new BufferedReader(new InputStreamReader(clSocket.getInputStream()));
 
+			//Unit Test: Connection
 			inputString = reader.readLine();
 			System.out.println("Client: "+inputString);
 
@@ -34,6 +35,7 @@ public class Server extends GeneralConnection{
 				printer.println("Success");
 				printer.flush();
 			}
+			//end
 
 			while(run){
 

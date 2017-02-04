@@ -26,12 +26,13 @@ public class Client extends  GeneralConnection{
 			printer = new PrintWriter(clSocket.getOutputStream());
 			reader = new BufferedReader(new InputStreamReader(clSocket.getInputStream()));
 
+			//Unit Test: Connection
 			printer.println("Success");
 			printer.flush();
 
 			inputString = reader.readLine();
 			System.out.println("Server: " + inputString);
-
+			//end
 			boolean wait = false;
 
 			while (run) {
