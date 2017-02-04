@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class Server extends GeneralConnection{
 
-	private int port;
 	private ServerSocket servSocket;
 
 	public Server(int port){
@@ -30,18 +29,25 @@ public class Server extends GeneralConnection{
 			inputString = reader.readLine();
 			System.out.println("Client: "+inputString);
 
-			while(run){
+			if(inputString != null) {
 
-				Scanner scanner = new Scanner(System.in);
-				outputString = scanner.nextLine();
-
-				printer.println(outputString);
+				printer.println("Success");
 				printer.flush();
+			}
+
+			while(run){
 
 				if(reader.ready()){
 
 					inputString = reader.readLine();
 					System.out.println("Client: "+inputString);
+
+					Scanner scanner = new Scanner(System.in);
+					outputString = scanner.nextLine();
+
+					printer.println(outputString);
+					printer.flush();
+					outputString = null;
 				}
 				if (inputString.equals("bye")) {
 
@@ -51,7 +57,6 @@ public class Server extends GeneralConnection{
 					System.out.println("Server: " + inputString);
 
 					run = false;
-					scanner.close();
 				}
 			}
 

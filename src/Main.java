@@ -7,9 +7,10 @@ public class Main {
 		System.out.println("Enter c for Client or s for Server");
 
 		Scanner scanner = new Scanner(System.in);
-		String input = scanner.next();
+		String input = scanner.nextLine();
 
 		if(input.toLowerCase().equals("c")) {
+
 
 			System.out.println("Client");
 

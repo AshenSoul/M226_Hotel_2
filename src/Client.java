@@ -29,21 +29,31 @@ public class Client extends  GeneralConnection{
 			printer.println("Success");
 			printer.flush();
 
+			inputString = reader.readLine();
+			System.out.println("Server: " + inputString);
+
+			boolean wait = false;
+
 			while (run) {
-
-				Scanner scanner = new Scanner(System.in);
-				outputString = scanner.nextLine();
-
-
-				printer.println(outputString);
-				printer.flush();
 
 				if (reader.ready()) {
 					inputString = reader.readLine();
 					System.out.println("Server: " + inputString);
-				}
 
-				if (inputString != null && inputString.equals("bye")) {
+					wait = false;
+				}
+				if(!wait) {
+					Scanner scanner = new Scanner(System.in);
+					outputString = scanner.nextLine();
+
+					if (outputString != null || outputString != "") {
+						printer.println(outputString);
+						printer.flush();
+						wait = true;
+					}
+					outputString = null;
+				}
+				if ( inputString.equals("bye")) {
 
 					printer.println("bye");
 					printer.flush();
@@ -51,7 +61,6 @@ public class Client extends  GeneralConnection{
 					System.out.println("Server: " + inputString);
 
 					run = false;
-					scanner.close();
 				}
 
 			}
